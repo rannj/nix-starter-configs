@@ -13,6 +13,9 @@
     # ./users.nix
 
     ./hardware-configuration.nix
+    ../modules/Graphics.nix
+    ../modules/SystemPackages.nix
+    ../modules/Users.nix
   ];
 
   nixpkgs = {
@@ -40,12 +43,11 @@
     flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
   in {
     settings = {
-      # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
-      # Opinionated: disable global registry
       flake-registry = "";
-      # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
+      extra-substituters = [ "https://yazi.cachix.org" ];
+      extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
     };
     # Opinionated: disable channels
     channel.enable = true;
@@ -56,17 +58,6 @@
   };
 
   networking.hostName = "ZephyrusG15";
-
-  users.users = {
-    rannj = {
-      initialPassword = "rnjatzq1314";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGgUZdxZSOlh/H+hhKibGmX57QtgsyER1dBmlc0ARHM0 rannj@ZephyrusG15"
-      ];
-      extraGroups = [ "wheel"] ;
-    };
-  };
 
   # This setups a SSH server. Very important if you're setting up a headless system.
   # Feel free to remove if you don't need it.
