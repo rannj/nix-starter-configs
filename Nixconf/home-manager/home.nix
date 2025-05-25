@@ -56,10 +56,10 @@
     go-musicfox
   ];
 
-  programs.yazi = {
-    enable = true;
-    package = yazi.packages.${pkgs.system}.default;
-  };
+  # programs.yazi = {
+  #   enable = true;
+  #   package = yazi.packages.${pkgs.system}.default;
+  # };
 
   programs.neovim.enable = true;
   programs.home-manager.enable = true;
