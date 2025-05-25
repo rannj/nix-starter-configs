@@ -13,10 +13,57 @@
     # ./users.nix
 
     ./hardware-configuration.nix
-    ../modules/Graphics.nix
-    ../modules/SystemPackages.nix
-    ../modules/Users.nix
+    ./modules/impermanence.nix
+    ./modules/Graphics.nix
+    ./modules/SystemPackages.nix
+    ./modules/Users.nix
   ];
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = false;
+
+  networking.hostName = "ZephyrusG15";
+  time.timeZone = "Asia/Chongqing";
+
+  i18n.defaultLocale = "en_US.UTF-8";
+  console = {
+    font = "Lat2-Terminus16";
+    # keyMap = "us";
+    useXkbConfig = true;
+  };
+
+  services.xserver.enable = true;
+
+  services.xserver.xkb.layout = "us";
+  services.xserver.xkb.options = "";
+
+  # services.pipewire = {
+  #   enable = true;
+  #   pulse.enable = true;
+  # };
+
+  services.libinput.enable = true;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+    };
+  };
+
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent = {
+  #   enable = true;
+  #   enableSSHSupport = true;
+  # };
 
   nixpkgs = {
     # You can add overlays here
@@ -38,36 +85,28 @@
     };
   };
 
-  nix = 
-  let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      flake-registry = "";
-      nix-path = config.nix.nixPath;
-      extra-substituters = [ "https://yazi.cachix.org" ];
-      extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        flake-registry = "";
+        nix-path = config.nix.nixPath;
+        substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
+        extra-substituters = [ "https://yazi.cachix.org" ];
+        extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
+      };
+      # Opinionated: disable channels
+      channel.enable = true;
+
+      # Opinionated: make flake registry and nix path match flake inputs
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    # Opinionated: disable channels
-    channel.enable = true;
-
-    # Opinionated: make flake registry and nix path match flake inputs
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
-
-  networking.hostName = "ZephyrusG15";
-
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
 
   system.stateVersion = "25.05";
+
 }
+

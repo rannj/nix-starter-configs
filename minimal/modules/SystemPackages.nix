@@ -1,8 +1,31 @@
-{ pkgs, inputs, ...}: 
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
+    pciutils
 
+    ffmpeg
+    p7zip-rar
+    jq
+    poppler
+    fd
+    ripgrep
+    fzf
+    zoxide
+    imagemagick
+    resvg
+    gnutar
+    unzip
+    gzip
+    bzip3
+
+    curl
+    wget
+    fastfetch
+    kitty
+    fish
+    btop
+    nvtopPackages.full
   ];
 
   # FONTS
@@ -28,15 +51,15 @@
 
   programs.xwayland.enable = true;
 
-#   xdg.portal = {
-#     enable = true;
-#     wlr.enable = false;
-#     extraPortals = [
-#       pkgs.xdg-desktop-portal-gtk
-#     ];
-#     configPackages = [
-#       pkgs.xdg-desktop-portal-gtk
-#       pkgs.xdg-desktop-portal
-#     ];
-#   };
+  #   xdg.portal = {
+  #     enable = true;
+  #     wlr.enable = false;
+  #     extraPortals = [
+  #       pkgs.xdg-desktop-portal-gtk
+  #     ];
+  #     configPackages = [
+  #       pkgs.xdg-desktop-portal-gtk
+  #       pkgs.xdg-desktop-portal
+  #     ];
+  #   };
 }

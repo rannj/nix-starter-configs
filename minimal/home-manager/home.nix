@@ -1,12 +1,8 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+{ inputs, lib, config, pkgs, ... }:
+
 {
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -36,23 +32,13 @@
     };
   };
 
-  # TODO: Set your username
   home = {
     username = "rannj";
     homeDirectory = "/home/rannj";
   };
 
+  home.packages = with pkgs; [
 
-  home.packages = with pkgs; [     
-    ffmpeg p7zip-rar jq poppler fd ripgrep fzf zoxide imagemagick resvg gnutar unzip gzip bzip3 
-
-    curl wget fastfetch kitty fish btop wl-clipboard nvtopPackages.full 
-
-    btrfs-progs brightnessctl playerctl pciutils cpufrequtils 
-
-    wofi pavucontrol polkit_gnome wlogout cliphist xarchiver
-    
-    go-musicfox
   ];
 
   programs.yazi = {
@@ -62,19 +48,19 @@
 
   programs.neovim.enable = true;
   programs.home-manager.enable = true;
-  programs.firefox.enable = true;    
+  programs.firefox.enable = true;
   programs.git.enable = true;
 
-  programs.thunar = {
-    enable = true;
-    thunar.plugins = with pkgs.xfce; [
-      exo
-      mousepad
-      thunar-archive-plugin
-      thunar-volman
-      tumbler
-    ];
-  };
+  #   programs.thunar = {
+  #     enable = true;
+  #     thunar.plugins = with pkgs.xfce; [
+  #       exo
+  #       mousepad
+  #       thunar-archive-plugin
+  #       thunar-volman
+  #       tumbler
+  #     ];
+  #   };
 
   systemd.user.startServices = "sd-switch";
 
