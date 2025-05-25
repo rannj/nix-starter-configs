@@ -15,7 +15,9 @@
     ./hardware-configuration.nix
     ./modules/impermanence.nix
     ./modules/Graphics.nix
+    ./modules/Services.nix
     ./modules/SystemPackages.nix
+    ./modules/Desktop.nix
     ./modules/Users.nix
   ];
 
@@ -31,31 +33,6 @@
   time.timeZone = "Asia/Chongqing";
 
   i18n.defaultLocale = "en_US.UTF-8";
-  console = {
-    font = "Lat2-Terminus16";
-    # keyMap = "us";
-    useXkbConfig = true;
-  };
-
-  services.xserver.enable = true;
-
-  services.xserver.xkb.layout = "us";
-  services.xserver.xkb.options = "";
-
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  services.libinput.enable = true;
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

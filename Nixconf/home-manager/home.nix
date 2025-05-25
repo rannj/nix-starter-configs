@@ -38,7 +38,22 @@
   };
 
   home.packages = with pkgs; [
+    inputs.zen-browser.packages."${system}".default
+  
+    wl-clipboard
+    btrfs-progs
+    brightnessctl
+    playerctl
+    cpufrequtils
 
+    wofi
+    pavucontrol
+    polkit_gnome
+    wlogout
+    cliphist
+    xarchiver
+
+    go-musicfox
   ];
 
   programs.yazi = {
@@ -51,16 +66,16 @@
   programs.firefox.enable = true;
   programs.git.enable = true;
 
-  #   programs.thunar = {
-  #     enable = true;
-  #     thunar.plugins = with pkgs.xfce; [
-  #       exo
-  #       mousepad
-  #       thunar-archive-plugin
-  #       thunar-volman
-  #       tumbler
-  #     ];
-  #   };
+  programs.thunar = {
+    enable = true;
+    thunar.plugins = with pkgs.xfce; [
+      exo
+      mousepad
+      thunar-archive-plugin
+      thunar-volman
+      tumbler
+    ];
+  };
 
   systemd.user.startServices = "sd-switch";
 

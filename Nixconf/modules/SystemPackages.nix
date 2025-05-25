@@ -2,8 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pciutils
-
     ffmpeg
     p7zip-rar
     jq
@@ -18,17 +16,22 @@
     unzip
     gzip
     bzip3
+    eza
+
+    nixpkgs-fmt
 
     curl
     wget
     fastfetch
     kitty
     fish
-    btop
+    btop-cuda
+    amdgpu_top
     nvtopPackages.full
   ];
 
-  # FONTS
+  fonts.enableDefaultPackages = true;
+
   fonts.packages = with pkgs; [
     sarasa-gothic
     noto-fonts-cjk-serif
@@ -42,24 +45,10 @@
     enable = true;
     antialias = false;
     defaultFonts = {
-      sansSerif = [ "" ];
-      serif = [ "" ];
-      monospace = [ "" ];
-      emoji = [ "" ];
+      sansSerif = [ "Noto Sans CJK SC" ];
+      serif = [ "Noto Serif CJK SC" ];
+      monospace = [ "FiraMono Nerd Font Mono" ];
+      emoji = [ "Noto Color Emoji" ];
     };
   };
-
-  programs.xwayland.enable = true;
-
-  #   xdg.portal = {
-  #     enable = true;
-  #     wlr.enable = false;
-  #     extraPortals = [
-  #       pkgs.xdg-desktop-portal-gtk
-  #     ];
-  #     configPackages = [
-  #       pkgs.xdg-desktop-portal-gtk
-  #       pkgs.xdg-desktop-portal
-  #     ];
-  #   };
 }

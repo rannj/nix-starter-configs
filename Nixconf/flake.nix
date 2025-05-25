@@ -11,6 +11,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
     yazi.url = "github:sxyazi/yazi";
   };
 
@@ -19,6 +21,7 @@
     , nixpkgs
     , impermanence
     , home-manager
+    , zen-browser
     , yazi
     , ...
     } @ inputs:
@@ -44,7 +47,7 @@
       homeConfigurations = {
         "rannj@ZephyrusG15" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; };
+          extraSpecialArgs = { inherit inputs outputs; system = "x86_64-linux";};
           modules = [
             ./home-manager/home.nix
             ({ pkgs, ... }: {
