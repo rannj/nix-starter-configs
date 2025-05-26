@@ -26,7 +26,7 @@
       with config.boot.kernelPackages;
       [
         acpi_call
-      ]
+      ];
   };
 }
 
