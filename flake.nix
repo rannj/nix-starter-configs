@@ -1,5 +1,5 @@
 {
-  description = "Your new nix config";
+  description = "Andy's NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
@@ -7,11 +7,40 @@
     impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hypr-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.nixpkgs.follows = "hyprland/nixpkgs";
+    };
+
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs = {
+        hyprgraphics.follows = "hyprland/hyprgraphics";
+        hyprlang.follows = "hyprland/hyprlang";
+        hyprutils.follows = "hyprland/hyprutils";
+        nixpkgs.follows = "hyprland/nixpkgs";
+        systems.follows = "hyprland/systems";
+      };
+    };
+
+    nur.url = "github:nix-community/NUR";
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    ghostty.url = "github:ghostty-org/ghostty";
+
+    zig-sweeper.url = "github:frost-phoenix/zig-sweeper";
   };
 
   outputs =
@@ -24,20 +53,29 @@
     } @ inputs:
 
     let
+      username = "rannj";
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+      lib = nixpkgs.lib;
       inherit (self) outputs;
     in
 
     {
-      # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         ZephyrusG15 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs outputs; };
+          inherit system;
+          specialArgs = {
+            host = "ZephyrusG15";
+            inherit self inputs outputs username;
+          };          
           modules = [
             impermanence.nixosModules.impermanence
-            ./nixos/configuration.nix
+            ./Main/configuration.nix
           ];
-        };
+        };        
       };
     };
 }
