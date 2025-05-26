@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
 
+    acpi
     ncdu
     btrfs-progs
 
@@ -19,23 +20,14 @@
     imagemagick
     resvg
 
+    curl
+    wget
+    kitty
     gnutar
     unzip
     gzip
     bzip3
     eza
-
-    nixpkgs-fmt
-
-    curl
-    wget
-    fastfetch
-    kitty
-    fish
-    starship
-    btop-cuda
-    amdgpu_top
-    nvtopPackages.full
   ];
 
   programs.neovim.enable = true;

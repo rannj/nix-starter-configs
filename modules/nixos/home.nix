@@ -40,12 +40,23 @@
   home.packages = with pkgs; [
     inputs.zen-browser.packages."${system}".default
 
-    wl-clipboard
+    fastfetch
+    fish
+    starship
+
+    nixpkgs-fmt
+    btop-cuda
+    powertop
+    amdgpu_top
+    nvtopPackages.full
+    cpupower-gui
+
     brightnessctl
     playerctl
     cpufrequtils
 
     wofi
+    wl-clipboard
     pavucontrol
     polkit_gnome
     wlogout
