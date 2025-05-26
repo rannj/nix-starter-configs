@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    inputs.home-manager.packages.${pkgs.system}.default
+
     yazi
     ffmpeg
     p7zip-rar
