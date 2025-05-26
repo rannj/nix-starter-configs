@@ -71,7 +71,7 @@
     enable = true;
     antialias = true;
     defaultFonts = {
-      sansSerif = [ "Noto Sans CJK SC" ];
+      sansSerif = [ "Sarasa Gothic SC" ];
       serif = [ "Noto Serif CJK SC" ];
       monospace = [ "FiraMono Nerd Font Mono" ];
       emoji = [ "Noto Color Emoji" ];
