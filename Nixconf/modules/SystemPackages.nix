@@ -26,10 +26,19 @@
     fastfetch
     kitty
     fish
+    starship
     btop-cuda
     amdgpu_top
     nvtopPackages.full
   ];
+
+  programs.neovim.enable = true;  
+
+  environment = {
+    sessionVariables = {
+      EDITOR = "nvim";
+    };
+  };
 
   fonts.enableDefaultPackages = true;
 

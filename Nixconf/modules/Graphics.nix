@@ -37,13 +37,13 @@
   };
 
   hardware.nvidia = {
+    amdgpuBusId = "PCI:6@0:0:0";
+    nvidiaBusId = "PCI:1@0:0:0";
     prime = {
       offload = {
         enable = true;
         enableOffloadCmd = true;
       };
-      amdgpuBusId = "PCI:6@0:0:0";
-      nvidiaBusId = "PCI:1@0:0:0";
     };
   };
 }

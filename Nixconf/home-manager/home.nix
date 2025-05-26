@@ -61,7 +61,6 @@
   #   package = yazi.packages.${pkgs.system}.default;
   # };
 
-  programs.neovim.enable = true;
   programs.home-manager.enable = true;
   programs.firefox.enable = true;
   programs.git.enable = true;
