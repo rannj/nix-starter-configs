@@ -57,14 +57,14 @@
   ];
 
   programs.home-manager.enable = true;
-  
+
   programs.git = {
     enable = true;
     userName = "rannj";
     userEmail = "rnj812382486@gmail.com";
     extraConfig = {
       url = {
-        "git@github.com:".insteadOf = [ "gh:" "https://github.com/"];
+        "git@github.com:".insteadOf = [ "gh:" "https://github.com/" ];
       };
     };
   };

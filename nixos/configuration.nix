@@ -13,7 +13,7 @@
     # ./users.nix
 
     ./hardware-configuration.nix
-    
+
     ../home-manager/home-manager.nix
 
     ../modules/impermanence.nix
