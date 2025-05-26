@@ -4,6 +4,8 @@
   environment.systemPackages = with pkgs; [
     inputs.home-manager.packages.${pkgs.system}.default
 
+    btrfs-progs
+
     yazi
     ffmpeg
     p7zip-rar
@@ -15,6 +17,7 @@
     zoxide
     imagemagick
     resvg
+
     gnutar
     unzip
     gzip

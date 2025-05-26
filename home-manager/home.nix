@@ -41,7 +41,6 @@
     inputs.zen-browser.packages."${system}".default
 
     wl-clipboard
-    btrfs-progs
     brightnessctl
     playerctl
     cpufrequtils
