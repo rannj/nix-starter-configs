@@ -6,7 +6,7 @@
 # in
 
 {
-  services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -30,7 +30,7 @@
     nvidiaSettings = true;
     modesetting.enable = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    powerManagement.finegrained = false;
     dynamicBoost.enable = true;
 
     nvidiaPersistenced = false;
@@ -40,9 +40,10 @@
   hardware.nvidia.prime = {
     amdgpuBusId = "PCI:6@0:0:0";
     nvidiaBusId = "PCI:1@0:0:0";
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
+    sync.enable = true;
+    # offload = {
+    #   enable = true;
+    #   enableOffloadCmd = true;
     };
   };
 }
