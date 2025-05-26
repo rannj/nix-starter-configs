@@ -49,7 +49,6 @@
     powertop
     amdgpu_top
     nvtopPackages.full
-    cpupower-gui
 
     brightnessctl
     playerctl
