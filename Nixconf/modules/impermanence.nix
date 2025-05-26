@@ -20,6 +20,7 @@
 
     users.rannj = {
       directories = [
+        "NixOS"
         "Downloads"
         "Music"
         "Pictures"
