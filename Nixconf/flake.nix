@@ -12,8 +12,6 @@
     };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs =
@@ -22,7 +20,6 @@
     , impermanence
     , home-manager
     , zen-browser
-    , yazi
     , ...
     } @ inputs:
 
@@ -50,9 +47,6 @@
           extraSpecialArgs = { inherit inputs outputs; system = "x86_64-linux";};
           modules = [
             ./home-manager/home.nix
-            ({ pkgs, ... }: {
-              home.packages = [ yazi.packages.${pkgs.system}.default ];
-            })
           ];
         };
       };

@@ -39,5 +39,8 @@
         PasswordAuthentication = true;
       };
     };
+
+    supergfxd.enable = true;
+    asusd.enable = true;
   };
 }

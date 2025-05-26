@@ -2,6 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
+    yazi
     ffmpeg
     p7zip-rar
     jq

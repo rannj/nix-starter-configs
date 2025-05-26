@@ -72,8 +72,6 @@
         flake-registry = "";
         nix-path = config.nix.nixPath;
         substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
-        extra-substituters = [ "https://yazi.cachix.org" ];
-        extra-trusted-public-keys = [ "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k=" ];
       };
       # Opinionated: disable channels
       channel.enable = true;
