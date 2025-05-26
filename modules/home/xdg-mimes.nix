@@ -82,9 +82,11 @@ let
     with lists;
     listToAttrs (
       flatten (
-        mapAttrsToList (
-          key: map (type: attrsets.nameValuePair type defaultApps."${key}")
-        ) mimeMap
+        mapAttrsToList
+          (
+            key: map (type: attrsets.nameValuePair type defaultApps."${key}")
+          )
+          mimeMap
       )
     );
 in

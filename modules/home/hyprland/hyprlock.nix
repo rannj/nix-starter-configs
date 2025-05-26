@@ -1,8 +1,7 @@
-{
-  inputs,
-  pkgs,
-  host,
-  ...
+{ inputs
+, pkgs
+, host
+, ...
 }:
 {
   programs.hyprlock = {

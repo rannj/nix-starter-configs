@@ -1,8 +1,7 @@
-{
-  inputs,
-  pkgs,
-  host,
-  ...
+{ inputs
+, pkgs
+, host
+, ...
 }:
 let
   ghostty = inputs.ghostty.packages.${pkgs.system}.default;

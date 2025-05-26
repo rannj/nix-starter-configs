@@ -7,7 +7,7 @@
     impermanence.url = "github:nix-community/impermanence";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -38,8 +38,6 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
-    ghostty.url = "github:ghostty-org/ghostty";
-
     zig-sweeper.url = "github:frost-phoenix/zig-sweeper";
   };
 
@@ -50,7 +48,7 @@
     , home-manager
     , zen-browser
     , ...
-    } @ inputs:
+    }@inputs:
 
     let
       username = "rannj";
@@ -60,7 +58,6 @@
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
-      inherit (self) outputs;
     in
 
     {
@@ -69,13 +66,13 @@
           inherit system;
           specialArgs = {
             host = "ZephyrusG15";
-            inherit self inputs outputs username;
-          };          
+            inherit self inputs username;
+          };
           modules = [
             impermanence.nixosModules.impermanence
-            ./Main/configuration.nix
+            ./main/configuration.nix
           ];
-        };        
+        };
       };
     };
 }

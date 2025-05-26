@@ -5,6 +5,6 @@
   boot.loader.systemd-boot.configurationLimit = 10;
 
   boot.initrd.kernelModules = [ "amdgpu" ];
-  
+
   boot.kernelPackages = pkgs.linuxPackages_zen;
 }

@@ -1,9 +1,9 @@
-{ lib, pkgs, config, ... }:
+{ input, pkgs, config, ... }:
 
-let
-  hyprland-pkgs =
-    inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-in
+# let
+#   hyprland-pkgs =
+#     inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+# in
 
 {
   services.xserver.videoDrivers = [ "amdgpu" "nvidia" ];
@@ -13,7 +13,7 @@ in
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    package = hyprland-pkgs.mesa; ## Altered
+    # package = hyprland-pkgs.mesa; ## Altered
     extraPackages = with pkgs; [
       vaapiVdpau
       libvdpau
