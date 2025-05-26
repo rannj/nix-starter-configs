@@ -14,7 +14,7 @@
     useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs outputs username host; };
     users.${username} = {
-      # imports = [ ../Home ];
+      # imports = [ ../home ];
     };
   };
 
