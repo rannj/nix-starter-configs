@@ -35,7 +35,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             impermanence.nixosModules.impermanence
-            ./configuration.nix
+            ./nixos/configuration.nix
           ];
         };
       };
@@ -44,7 +44,7 @@
       homeConfigurations = {
         "rannj@ZephyrusG15" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
-          extraSpecialArgs = { inherit inputs outputs; system = "x86_64-linux";};
+          extraSpecialArgs = { inherit inputs outputs; system = "x86_64-linux"; };
           modules = [
             ./home-manager/home.nix
           ];

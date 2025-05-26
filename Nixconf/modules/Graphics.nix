@@ -8,7 +8,7 @@
     "nvidia"
   ];
 
-  hardware.cpu.amd.updateMicrocode
+  hardware.cpu.amd.updateMicrocode = true;
 
   hardware.graphics = {
     enable = true;
@@ -30,20 +30,18 @@
     modesetting.enable = true;
     powerManagement.enable = true;
     powerManagement.finegrained = true;
+    dynamicBoost.enable = true;
 
-    dynamicBoost.enable = false;
     nvidiaPersistenced = false;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 
-  hardware.nvidia = {
+  hardware.nvidia.prime = {
     amdgpuBusId = "PCI:6@0:0:0";
     nvidiaBusId = "PCI:1@0:0:0";
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
     };
   };
 }

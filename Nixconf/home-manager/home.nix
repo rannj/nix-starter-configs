@@ -39,7 +39,7 @@
 
   home.packages = with pkgs; [
     inputs.zen-browser.packages."${system}".default
-  
+
     wl-clipboard
     btrfs-progs
     brightnessctl
@@ -56,24 +56,17 @@
     go-musicfox
   ];
 
-  # programs.yazi = {
-  #   enable = true;
-  #   package = yazi.packages.${pkgs.system}.default;
-  # };
-
   programs.home-manager.enable = true;
-  programs.firefox.enable = true;
-  programs.git.enable = true;
-
-  programs.thunar = {
+  
+  programs.git = {
     enable = true;
-    thunar.plugins = with pkgs.xfce; [
-      exo
-      mousepad
-      thunar-archive-plugin
-      thunar-volman
-      tumbler
-    ];
+    userName = "rannj";
+    userEmail = "rnj812382486@gmail.com";
+    extraConfig = {
+      url = {
+        "git@github.com:".insteadOf = [ "gh:" "https://github.com/"];
+      };
+    };
   };
 
   systemd.user.startServices = "sd-switch";

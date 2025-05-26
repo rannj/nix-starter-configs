@@ -6,7 +6,7 @@
     pulseaudio.enable = false;
     udisks2.enable = true;
     libinput.enable = true;
-    gvfs.enable = true; 
+    gvfs.enable = true;
     supergfxd.enable = true;
     asusd.enable = true;
 
@@ -18,7 +18,7 @@
         layout = "us";
         options = "";
       };
-    };  
+    };
 
     displayManager = {
       sddm = {
@@ -26,9 +26,9 @@
         package = pkgs.kdePackages.sddm;
         wayland.enable = true;
       };
-    }; 
-    
-    services.pipewire = {
+    };
+
+    pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
@@ -37,7 +37,7 @@
       # wireplumber.enable = true;
       # lowLatency.enable = true;
     };
-  
+
     openssh = {
       enable = true;
       settings = {
@@ -45,8 +45,5 @@
         PasswordAuthentication = true;
       };
     };
-
-    supergfxd.enable = true;
-    asusd.enable = true;
   };
 }

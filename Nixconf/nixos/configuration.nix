@@ -13,12 +13,12 @@
     # ./users.nix
 
     ./hardware-configuration.nix
-    ./modules/impermanence.nix
-    ./modules/Graphics.nix
-    ./modules/Services.nix
-    ./modules/SystemPackages.nix
-    ./modules/Desktop.nix
-    ./modules/Users.nix
+    ../modules/impermanence.nix
+    ../modules/Graphics.nix
+    ../modules/Services.nix
+    ../modules/SystemPackages.nix
+    ../modules/Desktop.nix
+    ../modules/Users.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -84,7 +84,7 @@
         experimental-features = "nix-command flakes";
         flake-registry = "";
         nix-path = config.nix.nixPath;
-        substituters = [ 
+        substituters = [
           "https://mirrors.ustc.edu.cn/nix-channels/store"
           "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
         ];

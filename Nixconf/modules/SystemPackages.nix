@@ -32,7 +32,18 @@
     nvtopPackages.full
   ];
 
-  programs.neovim.enable = true;  
+  programs.neovim.enable = true;
+
+  programs.thunar = {
+    enable = true;
+    thunar.plugins = with pkgs.xfce; [
+      exo
+      mousepad
+      thunar-archive-plugin
+      thunar-volman
+      tumbler
+    ];
+  };
 
   environment = {
     sessionVariables = {
@@ -53,7 +64,7 @@
 
   fonts.fontconfig = {
     enable = true;
-    antialias = false;
+    antialias = true;
     defaultFonts = {
       sansSerif = [ "Noto Sans CJK SC" ];
       serif = [ "Noto Serif CJK SC" ];
