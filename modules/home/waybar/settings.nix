@@ -1,7 +1,7 @@
 { host, ... }:
 let
   custom = {
-    font = "Maple Mono";
+    font = "FiraMono Nerd Font";
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";
@@ -37,11 +37,10 @@ in
     modules-right = [
       "cpu"
       "memory"
-      (if (host == "desktop") then "disk" else "")
       "pulseaudio"
       "network"
       "battery"
-      "hyprland/language"
+      # "hyprland/language"
       "custom/notification"
     ];
     clock = {
@@ -82,29 +81,29 @@ in
       };
     };
     cpu = {
-      format = "<span foreground='${green}'> </span> {usage}%";
-      format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
-      interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      format = "<span foreground='${green}'>  </span> {usage}%";
+      format-alt = "<span foreground='${green}'>  </span> {avg_frequency} GHz";
+      interval = 1;
+      # on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     memory = {
-      format = "<span foreground='${cyan}'>󰟜 </span>{}%";
-      format-alt = "<span foreground='${cyan}'>󰟜 </span>{used} GiB"; # 
-      interval = 2;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      format = "<span foreground='${cyan}'>󰟜  </span>{}%";
+      format-alt = "<span foreground='${cyan}'>󰟜  </span>{used} GiB"; # 
+      interval = 1;
+      # on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     disk = {
       # path = "/";
       format = "<span foreground='${orange}'>󰋊 </span>{percentage_used}%";
       interval = 60;
-      on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
+      # on-click-right = "hyprctl dispatch exec '[float; center; size 950 650] kitty --override font_size=14 --title float_kitty btop'";
     };
     network = {
-      format-wifi = "<span foreground='${magenta}'> </span> {signalStrength}%";
-      format-ethernet = "<span foreground='${magenta}'>󰀂 </span>";
+      format-wifi = "<span foreground='${magenta}'>  </span> {signalStrength}%";
+      format-ethernet = "<span foreground='${magenta}'>󰀂  </span>";
       tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
       format-linked = "{ifname} (No IP)";
-      format-disconnected = "<span foreground='${magenta}'>󰖪 </span>";
+      format-disconnected = "<span foreground='${magenta}'>󰖪  </span>";
     };
     tray = {
       icon-size = 20;
@@ -112,16 +111,16 @@ in
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "<span foreground='${blue}'> </span> {volume}%";
+      format-muted = "<span foreground='${blue}'>  </span> {volume}%";
       format-icons = {
-        default = [ "<span foreground='${blue}'> </span>" ];
+        default = [ "<span foreground='${blue}'>  </span>" ];
       };
-      scroll-step = 2;
-      on-click = "pamixer -t";
+      scroll-step = 1;
+      # on-click = "pamixer -t";
       on-click-right = "pavucontrol";
     };
     battery = {
-      format = "<span foreground='${yellow}'>{icon}</span> {capacity}%";
+      format = "<span foreground='${yellow}'>{icon} </span> {capacity}%";
       format-icons = [
         " "
         " "
@@ -142,15 +141,15 @@ in
     };
     "hyprland/language" = {
       format = "<span foreground='#FABD2F'> </span> {}";
-      format-fr = "FR";
+      # format-fr = "FR";
       format-en = "US";
     };
     "custom/launcher" = {
       format = "";
-      on-click = "random-wallpaper";
-      on-click-right = "rofi -show drun";
-      tooltip = "true";
-      tooltip-format = "Random Wallpaper";
+      # on-click = "random-wallpaper";
+      on-click = "wofi -show drun";
+      # tooltip = "true";
+      # tooltip-format = "Random Wallpaper";
     };
     "custom/notification" = {
       tooltip = false;

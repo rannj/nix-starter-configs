@@ -46,15 +46,15 @@
         "actions": [
           {
             "label": "Performance",
-            "command": "powerprofilesctl set performance"
+            "command": "asusctl profile -P Performance"
           },
           {
             "label": "Balanced",
-            "command": "powerprofilesctl set balanced"
+            "command": "asusctl profile -P Balanced"
           },
           {
-            "label": "Power-saver",
-            "command": "powerprofilesctl set power-saver"
+            "label": "Quiet",
+            "command": "asusctl profile -P Quiet"
           }
         ]
       },
