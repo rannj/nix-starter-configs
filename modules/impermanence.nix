@@ -4,7 +4,6 @@
     hideMounts = true;
     directories = [
       "/etc/ssh"
-      "/etc/nixos"
       "/var/log"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
