@@ -29,7 +29,7 @@ in
     margin-left = 0;
     margin-right = 0;
     modules-left = [
-      "custom/launcher"
+      # "custom/launcher"
       "hyprland/workspaces"
       "tray"
     ];
@@ -111,9 +111,9 @@ in
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "<span foreground='${blue}'>  </span> {volume}%";
+      format-muted = "<span foreground='${blue}'>   </span> {volume}%";
       format-icons = {
-        default = [ "<span foreground='${blue}'>  </span>" ];
+        default = [ "<span foreground='${blue}'>   </span>" ];
       };
       scroll-step = 1;
       # on-click = "pamixer -t";
