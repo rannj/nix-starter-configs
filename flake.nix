@@ -21,7 +21,6 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
-    hyprlock = {
   };
 
   outputs =
