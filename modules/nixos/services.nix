@@ -3,7 +3,6 @@
 {
   services = {
     # dbus.enable = true;
-    pulseaudio.enable = false;
     fstrim.enable = true;
     udisks2.enable = true;
     libinput.enable = true;
