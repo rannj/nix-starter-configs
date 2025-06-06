@@ -6,39 +6,22 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    nur.url = "github:nix-community/NUR";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
     hypr-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "hyprland/nixpkgs";
     };
-
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-      inputs.nixpkgs.follows = "hyprland/nixpkgs";
-    };
-
     hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs = {
-        hyprgraphics.follows = "hyprland/hyprgraphics";
-        hyprlang.follows = "hyprland/hyprlang";
-        hyprutils.follows = "hyprland/hyprutils";
-        nixpkgs.follows = "hyprland/nixpkgs";
-        systems.follows = "hyprland/systems";
-      };
-    };
-
-    nur.url = "github:nix-community/NUR";
-
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
-
-    zig-sweeper.url = "github:frost-phoenix/zig-sweeper";
   };
 
   outputs =

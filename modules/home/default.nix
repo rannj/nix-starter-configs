@@ -1,43 +1,80 @@
-{ ... }:
+# This is your home-manager configuration file
+# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+{ inputs, lib, config, pkgs, ... }:
+
 {
+  # You can import other home-manager modules here
   imports = [
-    ./aseprite/aseprite.nix # pixel art editor
-    ./audacious.nix # music player
-    ./bat.nix # better cat command
-    ./browser.nix # firefox based browser
-    ./btop.nix # resouces monitor 
-    ./cava.nix # audio visualizer
-    ./discord.nix # discord
-    ./fastfetch.nix # fetch tool
-    ./flow.nix # terminal text editor
-    ./fzf.nix # fuzzy finder
-    ./gaming.nix # packages related to gaming
-    ./ghostty.nix # terminal
-    ./git.nix # version control
-    ./gnome.nix # gnome apps
-    ./gtk.nix # gtk theme
-    ./hyprland # window manager
-    ./kitty.nix # terminal
-    ./lazygit.nix
-    ./micro.nix # nano replacement
-    ./nemo.nix # file manager
-    ./nvim.nix # neovim editor
-    ./obsidian.nix
-    ./p10k/p10k.nix
-    ./packages # other packages
-    ./retroarch.nix
-    ./rofi.nix # launcher
-    ./scripts/scripts.nix # personal scripts
-    ./ssh.nix # ssh config
-    ./superfile/superfile.nix # terminal file manager
-    ./swaylock.nix # lock screen
-    ./swayosd.nix # brightness / volume wiget
-    ./swaync/swaync.nix # notification deamon
-    # ./viewnior.nix                    # image viewer
-    ./vscodium # vscode fork
-    ./waybar # status bar
-    ./waypaper.nix # GUI wallpaper picker
-    ./xdg-mimes.nix # xdg config
-    ./zsh # shell
+    # If you want to use home-manager modules from other flakes (such as nix-colors):
+    # inputs.nix-colors.homeManagerModule
+
+    # You can also split up your configuration and import pieces of it here:
   ];
+
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # If you want to use overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
+
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+    # Configure your nixpkgs instance
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = _: true;
+    };
+  };
+
+  home = {
+    username = "rannj";
+    homeDirectory = "/home/rannj";
+  };
+
+  home.packages = with pkgs; [
+    inputs.zen-browser.packages."${system}".default
+
+    fastfetch
+    fish
+    starship
+
+    nixpkgs-fmt
+    btop-cuda
+    amdgpu_top
+    nvtopPackages.full
+
+    brightnessctl
+    playerctl
+    wofi
+    wl-clipboard
+    pavucontrol
+    polkit_gnome
+    wlogout
+    cliphist
+    xarchiver
+
+    go-musicfox
+  ];
+
+  programs.home-manager.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "rannj";
+    userEmail = "rnj812382486@gmail.com";
+    extraConfig = {
+      url = {
+        "git@github.com:".insteadOf = [ "gh:" "https://github.com/" ];
+      };
+    };
+  };
+
+  systemd.user.startServices = "sd-switch";
+
+  home.stateVersion = "25.05";
 }

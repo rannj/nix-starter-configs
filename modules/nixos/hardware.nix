@@ -1,10 +1,5 @@
 { input, pkgs, config, ... }:
 
-# let
-#   hyprland-pkgs =
-#     inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-# in
-
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 

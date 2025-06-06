@@ -12,7 +12,7 @@
     useUserPackages = true;
     # useGlobalPkgs = true;
     extraSpecialArgs = { inherit inputs username host; };
-    users.${username} = import ./home.nix;
+    users.${username} = import ../home;
   };
 
   users.mutableUsers = false;
