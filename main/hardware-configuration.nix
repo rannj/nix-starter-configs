@@ -15,36 +15,36 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
+    { 
       device = "none";
       fsType = "tmpfs";
       options = [ "defaults" "size=25%" "mode=755" ];
     };
 
   fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-uuid/00AF-1C53";
+    { 
+      device = "/dev/disk/by-uuid/3048-0EF1";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" "umask=0077" ];
     };
 
   fileSystems."/nix" =
-    {
-      device = "/dev/disk/by-uuid/76a6eff2-a2b0-4c64-8439-c39455953e5f";
+    { 
+      device = "/dev/disk/by-uuid/1970ba22-80d4-4796-9c4a-45a292df28aa";
       fsType = "btrfs";
       options = [ "subvol=@nix" "compress=zstd:1" "noatime" ];
     };
 
   fileSystems."/persistent" =
-    {
-      device = "/dev/disk/by-uuid/76a6eff2-a2b0-4c64-8439-c39455953e5f";
+    { 
+      device = "/dev/disk/by-uuid/1970ba22-80d4-4796-9c4a-45a292df28aa";
       neededForBoot = true;
       fsType = "btrfs";
       options = [ "subvol=@persistent" "compress=zstd:1" "noatime" ];
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/0dd83e85-0b38-4497-b907-4aacc8ae5ea5"; }];
+    [{ device = "/dev/disk/by-uuid/f70d4ff2-8b6a-45b9-b548-628969158c81"; }];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

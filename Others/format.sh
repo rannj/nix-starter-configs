@@ -29,9 +29,10 @@ mount -v /dev/nvme0n1p1 /mnt/boot -o umask=0077
 mount -v -t btrfs -o subvol=/@nix,compress=zstd /dev/nvme0n1p3 /mnt/nix
 mount -v -t btrfs -o subvol=/@persistent,compress=zstd /dev/nvme0n1p3 /mnt/persistent
 
-mkdir /mnt/etc/nixos && mkdir /mnt/var/log
-mkdir /mnt/persistent/etc && mkdir /mnt/persistent/var
-mkdir /mnt/persistent/etc/nixos && mkdir /mnt/persistent/var/log
+mkdir -v /mnt/etc/nixos
+mkdir -v /mnt/var/log
+mkdir -v -p /mnt/persistent/etc/nixos
+mkdir -v -p /mnt/persistent/var/log
 
 mount -v -o bind /mnt/persistent/etc/nixos /mnt/etc/nixos
 mount -v -o bind /mnt/persistent/var/log /mnt/var/log
