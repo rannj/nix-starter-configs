@@ -6,7 +6,7 @@ parted /dev/nvme0n1 --script \
   mkpart NixOS 1025 100% \
   print
 
-mkfs.fat -F 32 -n ESP /dev/nvme0n1p1
+mkfs.vfat -F 32 -n ESP /dev/nvme0n1p1
 
 mkfs.btrfs -L NixOS /dev/nvme0n1p2
 
