@@ -6,25 +6,32 @@ parted /dev/nvme0n1 --script \
   mkpart NixOS 1025 100% \
   print
 
-mkfs.vfat -F 32 -n ESP /dev/nvme0n1p1
+mkfs.fat -F 32 -n ESP /dev/nvme0n1p1
 
 mkfs.btrfs -L NixOS /dev/nvme0n1p2
 
 mount -t btrfs -o compress=zstd /dev/nvme0n1p2 /mnt
 
 btrfs subvolume create /mnt/@nix
+btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@persistent
+btrfs subvolume create /mnt/@lib
+
 
 umount /mnt
 
 mount -v -t tmpfs none /mnt
 
-mkdir -v -p /mnt/{boot,nix,persistent,etc,var}
+mkdir -v -p /mnt/{boot,home,nix,persistent,etc,var}
 
 mount -v /dev/nvme0n1p1 /mnt/boot -o umask=0077
 
+mkdir -v /mnt/var/lib
+
 mount -v -t btrfs -o subvol=/@nix,compress=zstd /dev/nvme0n1p2 /mnt/nix
+mount -v -t btrfs -o subvol=/@home,compress=zstd /dev/nvme0n1p2 /mnt/home
 mount -v -t btrfs -o subvol=/@persistent,compress=zstd /dev/nvme0n1p2 /mnt/persistent
+mount -v -t btrfs -o subvol=/@lib,compress=zstd /dev/nvme0n1p2 /mnt/var/lib
 
 mkdir -v /mnt/etc/nixos
 mkdir -v /mnt/etc/ssh
