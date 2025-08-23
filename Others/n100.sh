@@ -17,7 +17,6 @@ btrfs subvolume create /mnt/@home
 btrfs subvolume create /mnt/@persistent
 btrfs subvolume create /mnt/@lib
 
-
 umount /mnt
 
 mount -v -t tmpfs none /mnt
